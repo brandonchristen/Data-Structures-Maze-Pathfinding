@@ -10,6 +10,11 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
+    if (argc<1) {
+        std::cout << "Please enter a filename." << std::endl;
+        return 1;
+    }
+    std::string filename = argv[1];
+    
     return 0;
 }
