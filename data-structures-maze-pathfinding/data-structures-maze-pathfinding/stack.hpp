@@ -12,14 +12,16 @@
 #include <stdio.h>
 #include <stdexcept>
 
+#include "point.hpp"
+
 class Stack {
 private:
     int length;
-    char* items;
+    Point* items;
 public:
-    void push_back(char data);
-    char pop_back();
-    char peek();
+    void push_back(Point data);
+    Point pop_back();
+    Point peek();
     bool isEmpty();
     int size();
 };

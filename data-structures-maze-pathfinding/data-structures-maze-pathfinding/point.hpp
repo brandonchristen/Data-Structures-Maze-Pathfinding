@@ -25,6 +25,7 @@ public:
     int gCost;
     int hCost;
     
+    Point(){};
     Point(int x, int y, bool traversable) : x(x), y(y), traversable(traversable){}
     
     void calculate(Point* end);
