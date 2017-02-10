@@ -12,10 +12,11 @@
 #include <stdio.h>
 
 class Point {
+public:
+	char* data;
     Point* parent = NULL;
     bool closed = false;
     bool opened = false;
-    
     bool traversable;
     
     int x;

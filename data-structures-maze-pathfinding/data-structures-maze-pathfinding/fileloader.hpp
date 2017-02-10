@@ -17,7 +17,7 @@
 class FileLoader {
     int numRows;
     int rowLength;
-    char** loadFile(std::string filename);
+    Point** loadFile(std::string filename);
     void saveFile(char** map, std::string filename);
 };
 

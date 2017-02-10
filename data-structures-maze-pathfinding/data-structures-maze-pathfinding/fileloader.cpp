@@ -7,13 +7,14 @@
 //
 
 #include "fileloader.hpp"
+#include "point.hpp"
 
 //  takes a filename, and a pointer to a linked list
 //  saves every line to a node in the linked list
-char** FileLoader::loadFile(const std::string filename) {
+Point** FileLoader::loadFile(const std::string filename) {
     
     std::ifstream ifs(filename);
-    char** map = new char*[0];
+	Point** map = new Point*[0];
     rowLength = 0;
     numRows = 0;
     // if the file isn't open, the argument is invalid
@@ -21,16 +22,17 @@ char** FileLoader::loadFile(const std::string filename) {
         throw std::invalid_argument("failed to load file");
     }
     bool b = true;
+
     // load every line of the file into the string, including whitespace.
     while (!ifs.eof()) {
         char** temp = new char*[numRows];
         for (int i = 0; i < numRows; i++) {
-            temp[i] = map[i];
+            temp[i] = map[i]->data;
         }
         numRows++;
-        map = new char*[numRows];
+        map = new Point*[numRows];
         for (int i = 0; i < numRows; i++) {
-            map[i] = temp[i];
+            map[i]->data = temp[i];
         }
         std::string tempstr;
         std::getline(ifs,tempstr);
@@ -38,7 +40,7 @@ char** FileLoader::loadFile(const std::string filename) {
             b = !b;
             rowLength = (int) tempstr.length();
         }
-        map[numRows-1] = &*tempstr.begin();
+        map[numRows-1]->data = &*tempstr.begin();
         
     }
     
