@@ -14,11 +14,13 @@
 #include <stdio.h>
 #include <string>
 
+#include "point.hpp"
+
 class FileLoader {
     int numRows;
     int rowLength;
     Point** loadFile(std::string filename);
-    void saveFile(char** map, std::string filename);
+    void saveFile(Point** map, std::string filename);
 };
 
 #endif /* fileloader_hpp */
