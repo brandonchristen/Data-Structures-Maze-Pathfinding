@@ -12,10 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include "point.hpp"
 
 class GameMap {
     std::string filename;
-    char** map;
+public:
+    Point** map;
     
 };
 
