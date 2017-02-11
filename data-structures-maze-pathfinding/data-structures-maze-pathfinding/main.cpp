@@ -25,7 +25,7 @@ int main(int argc, const char * argv[]) {
 	gm.map = fl.loadFile(filename);
 	//get row and col size
 	int rows = sizeof gm.map / sizeof gm.map[0]; 
-	int cols = sizeof gm.map[0] / sizeof(int); 
+	int cols = sizeof gm.map[0] / sizeof(Point);
 
 	while (curPosx != cols && curPosy != rows)
 	{

@@ -56,6 +56,7 @@ void FileLoader::saveFile(Point** map, std::string filename) {
     
     while (true) {
         // TODO: save map to file
+        break;
     }
     
     // close the stream
