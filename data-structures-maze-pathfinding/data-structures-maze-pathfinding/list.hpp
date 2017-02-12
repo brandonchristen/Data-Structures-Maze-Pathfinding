@@ -22,5 +22,7 @@ public:
     void push_back(Point* point);
     Point* get(int location);
     void remove(Point* point);
+    int size();
+    bool isEmpty();
 };
 #endif /* list_hpp */

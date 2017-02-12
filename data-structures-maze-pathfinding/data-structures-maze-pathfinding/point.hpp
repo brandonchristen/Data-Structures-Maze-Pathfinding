@@ -32,6 +32,7 @@ public:
     
     void calculate(Point* end);
     void calculate(Point* newParent, Point* end);
+    bool newParentIsBetter(Point* testParent);
 };
 
 #endif /* point_hpp */

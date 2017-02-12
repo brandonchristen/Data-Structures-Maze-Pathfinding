@@ -46,3 +46,11 @@ void List::remove(Point* point) {
     }
     delete[] temp;
 }
+
+int List::size() {
+    return length;
+}
+
+bool List::isEmpty() {
+    return length==0;
+}

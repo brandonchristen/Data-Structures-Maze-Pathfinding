@@ -26,3 +26,7 @@ void Point::calculate(Point* newParent, Point* end) {
     this->parent = newParent;
     calculate(end);
 }
+
+bool Point::newParentIsBetter(Point* testParent) {
+    return testParent->gCost < parent->gCost;
+}
