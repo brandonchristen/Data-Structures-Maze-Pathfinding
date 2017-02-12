@@ -7,13 +7,13 @@
 //
 
 #include "stack.hpp"
-void Stack::push_back(Point data) {
-    Point* temp = new Point[length];
+void Stack::push_back(Point* data) {
+    Point** temp = new Point*[length];
     for (int i = 0; i < length; i++) {
         temp[i] = items[i];
     }
     length++;
-    items = new Point[length];
+    items = new Point*[length];
     for (int i = 0; i < length-1; i++) {
         items[i] = temp[i];
     }
@@ -21,17 +21,17 @@ void Stack::push_back(Point data) {
     delete[] temp;
 }
 
-Point Stack::pop_back() {
+Point* Stack::pop_back() {
     if (this->isEmpty()) {
         throw std::out_of_range("Stack is empty.");
     }
-    Point data = items[length-1];
+    Point* data = items[length-1];
     length--;
-    Point* temp = new Point[length];
+    Point** temp = new Point*[length];
     for (int i = 0; i < length; i++) {
         temp[i] = items[i];
     }
-    items = new Point[length];
+    items = new Point*[length];
     for (int i = 0; i < length-1; i++) {
         items[i] = temp[i];
     }
@@ -40,7 +40,7 @@ Point Stack::pop_back() {
     return data;
 }
 
-Point Stack::peek() {
+Point* Stack::peek() {
     if (this->isEmpty()) {
         throw std::out_of_range("Stack is empty.");
     }

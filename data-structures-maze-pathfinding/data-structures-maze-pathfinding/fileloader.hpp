@@ -20,8 +20,8 @@ class FileLoader {
     int numRows;
     int rowLength;
 public:
-    Point** loadFile(std::string filename);
-    void saveFile(Point** map, std::string filename);
+    Point*** loadFile(std::string filename);
+    void saveFile(Point*** map, std::string filename);
 };
 
 #endif /* fileloader_hpp */

@@ -13,7 +13,7 @@
 
 class Point {
 public:
-	char* data;
+	char data;
     Point* parent = NULL;
     bool closed = false;
     bool opened = false;
@@ -27,7 +27,8 @@ public:
 
     
     Point(){};
-    Point(int x, int y, bool traversable) : x(x), y(y), traversable(traversable){}
+    Point(int x, int y, char data,bool traversable) :
+        x(x), y(y), data(data), traversable(traversable){}
     
     void calculate(Point* end);
     void calculate(Point* newParent, Point* end);

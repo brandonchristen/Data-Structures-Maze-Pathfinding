@@ -17,11 +17,11 @@
 class Stack {
 private:
     int length;
-    Point* items;
+    Point** items;
 public:
-    void push_back(Point data);
-    Point pop_back();
-    Point peek();
+    void push_back(Point* data);
+    Point* pop_back();
+    Point* peek();
     bool isEmpty();
     int size();
 };

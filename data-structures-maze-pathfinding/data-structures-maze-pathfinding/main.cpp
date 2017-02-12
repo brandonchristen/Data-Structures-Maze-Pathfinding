@@ -12,7 +12,6 @@
 
 int main(int argc, const char * argv[]) {
 
-	GameMap gm;
 	FileLoader fl;
     // insert code here...
     if (argc<1) {
@@ -22,7 +21,7 @@ int main(int argc, const char * argv[]) {
     std::string filename = argv[1];
     int curPosx = 0;
 	int curPosy = 0;
-	gm.map = fl.loadFile(filename);
+	GameMap gm(fl.loadFile(filename));
 	//get row and col size
 	int rows = sizeof gm.map / sizeof gm.map[0]; 
 	int cols = sizeof gm.map[0] / sizeof(Point);

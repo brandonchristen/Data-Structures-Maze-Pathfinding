@@ -12,6 +12,8 @@
 		FA0CC3EB1E4C9E140095B3E6 /* gamemap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC3E91E4C9E140095B3E6 /* gamemap.cpp */; };
 		FA0CC3EE1E4CA48B0095B3E6 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC3EC1E4CA48B0095B3E6 /* point.cpp */; };
 		FA0CC3F11E4CAD140095B3E6 /* fileloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC3EF1E4CAD140095B3E6 /* fileloader.cpp */; };
+		FA0CC3F41E50CD620095B3E6 /* queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC3F21E50CD620095B3E6 /* queue.cpp */; };
+		FA0CC3F71E50D5F10095B3E6 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC3F51E50D5F10095B3E6 /* list.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,10 @@
 		FA0CC3ED1E4CA48B0095B3E6 /* point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = point.hpp; sourceTree = "<group>"; };
 		FA0CC3EF1E4CAD140095B3E6 /* fileloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fileloader.cpp; sourceTree = "<group>"; };
 		FA0CC3F01E4CAD140095B3E6 /* fileloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fileloader.hpp; sourceTree = "<group>"; };
+		FA0CC3F21E50CD620095B3E6 /* queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = queue.cpp; sourceTree = "<group>"; };
+		FA0CC3F31E50CD620095B3E6 /* queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = queue.hpp; sourceTree = "<group>"; };
+		FA0CC3F51E50D5F10095B3E6 /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
+		FA0CC3F61E50D5F10095B3E6 /* list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,10 @@
 				FA0CC3EA1E4C9E140095B3E6 /* gamemap.hpp */,
 				FA0CC3E61E4C9B080095B3E6 /* stack.cpp */,
 				FA0CC3E71E4C9B080095B3E6 /* stack.hpp */,
+				FA0CC3F21E50CD620095B3E6 /* queue.cpp */,
+				FA0CC3F31E50CD620095B3E6 /* queue.hpp */,
+				FA0CC3F51E50D5F10095B3E6 /* list.cpp */,
+				FA0CC3F61E50D5F10095B3E6 /* list.hpp */,
 			);
 			path = "data-structures-maze-pathfinding";
 			sourceTree = "<group>";
@@ -142,8 +152,10 @@
 				FA0CC3EE1E4CA48B0095B3E6 /* point.cpp in Sources */,
 				FA0CC3E81E4C9B080095B3E6 /* stack.cpp in Sources */,
 				FA0CC3F11E4CAD140095B3E6 /* fileloader.cpp in Sources */,
+				FA0CC3F71E50D5F10095B3E6 /* list.cpp in Sources */,
 				FA0CC3EB1E4C9E140095B3E6 /* gamemap.cpp in Sources */,
 				FA0CC3E01E4B93350095B3E6 /* main.cpp in Sources */,
+				FA0CC3F41E50CD620095B3E6 /* queue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

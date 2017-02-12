@@ -7,3 +7,18 @@
 //
 
 #include "gamemap.hpp"
+
+GameMap::GameMap(Point*** map) :
+    map(map),
+    start(map[1][0]),
+    end(map[(sizeof map / sizeof map[0])-1][sizeof map[0] / sizeof(Point)]) {}
+
+void GameMap::aStarPathFind() {
+    Point* current;
+    List openPoints;
+    List closedPoints;
+    bool b = true;
+    
+    openPoints.push_back(start);
+    start->opened = true;
+}
