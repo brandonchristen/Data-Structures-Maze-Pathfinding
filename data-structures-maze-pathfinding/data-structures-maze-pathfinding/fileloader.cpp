@@ -10,7 +10,7 @@
 
 //  takes a filename, and a pointer to a linked list
 //  saves every line to a node in the linked list
-Point*** FileLoader::loadFile(const std::string filename) {
+Point*** FileLoader::loadFile(const char* filename) {
     
     std::ifstream ifs(filename);
 	Point*** map = new Point**[0];
@@ -21,7 +21,7 @@ Point*** FileLoader::loadFile(const std::string filename) {
     
     // if the file isn't open, the argument is invalid
     if (ifs.fail()) {
-        throw std::invalid_argument("failed to load file");
+        throw std::invalid_argument("Invalid file name");
     }
 
     // load every line of the file into the string, including whitespace.
@@ -30,7 +30,7 @@ Point*** FileLoader::loadFile(const std::string filename) {
         std::string line;
         getline(ifs,line);
         if (line.length() > numRows) numRows = (int) line.length();
-        for (char& c : line) {
+        for (char c : line) {
             Point* point = new Point(x,y,c,c!='+'&&c!='-');
             map[x][y] = point;
             y++;
@@ -46,17 +46,26 @@ Point*** FileLoader::loadFile(const std::string filename) {
 
 //  takes a pointer to a linked list, and a filename
 //  saves every node to the given file
-void FileLoader::saveFile(Point*** map, std::string filename) {
-    std::ofstream ofs(filename+"_solved", std::fstream::out | std::fstream::trunc);
+void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
+    char* outfilename;
+    std::sprintf(outfilename,"%s%s",filename,"_solved");
+    std::ofstream ofs(outfilename, std::fstream::out | std::fstream::trunc);
     
     // if the file isn't open, the argument is invalid
-    if (ofs.fail()) throw std::invalid_argument("failed to save file");
+    if (ofs.fail()) throw std::invalid_argument("Invalid file name");
     
-    // output the string to file
-    
-    while (true) {
-        // TODO: save map to file
-        break;
+    // output the map to file
+    int rows = sizeof map / sizeof map[0];
+    int cols = sizeof map[0] / sizeof(Point*);
+    char a[rows][cols];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            a[i][j] = map[i][j]->data;
+        }
+    }
+    Point* point;
+    while ((point = path.pop_back())!=NULL) {
+        a[point->x][point->y] = '#';
     }
     
     // close the stream

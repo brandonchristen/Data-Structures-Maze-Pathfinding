@@ -15,13 +15,14 @@
 #include <string>
 
 #include "point.hpp"
+#include "stack.hpp"
 
 class FileLoader {
     int numRows;
     int rowLength;
 public:
-    Point*** loadFile(std::string filename);
-    void saveFile(Point*** map, std::string filename);
+    Point*** loadFile(const char* filename);
+    void saveFile(Point*** map, Stack path, const char* filename);
 };
 
 #endif /* fileloader_hpp */

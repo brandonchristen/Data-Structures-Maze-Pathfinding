@@ -17,13 +17,13 @@ void GameMap::aStarPathFind() {
     Point* current;
     Point* child;
     List openPoints;
-    List closedPoints;
     
     start->calculate(end);
     openPoints.push_back(start);
     start->opened = true;
+    current = start;
     
-    while (true/* TODO: replace with actual check */) {
+    while (true/* TODO: add timeout */) {
         // look for the Point with the lowest fCost
         for (int i = 0; i < openPoints.size(); i++) {
             if (openPoints.get(i)->fCost <= current->fCost) {
@@ -34,7 +34,6 @@ void GameMap::aStarPathFind() {
         if (current==end) break;
         
         openPoints.remove(current);
-        closedPoints.push_back(current);
         current->opened = false;
         current->closed = true;
         

@@ -11,28 +11,22 @@
 #include "gamemap.hpp"
 
 int main(int argc, const char * argv[]) {
-
 	FileLoader fl;
-    // insert code here...
     if (argc<1) {
         std::cout << "Please enter a filename." << std::endl;
         return 1;
     }
     std::string filename = argv[1];
-    int curPosx = 0;
-	int curPosy = 0;
-	GameMap gm(fl.loadFile(filename));
-	//get row and col size
-	int rows = sizeof gm.map / sizeof gm.map[0]; 
-	int cols = sizeof gm.map[0] / sizeof(Point);
-
-	while (curPosx != cols && curPosy != rows)
-	{
-		//check for best move and then move there.
-		// check the Point objects at the locations x-1, x+1 and y-1, y+1 from curPosx, curPosy
-		//store those Point objects into an array and sort their fcosts to get the lowest possible fcost
-		//then take that objects x and y values to set curPosx, curPosy to those values.
-	}
-
+    std::cout << argv[1] << std::endl;
+    try {
+        GameMap gm(fl.loadFile(filename.c_str()));
+        gm.aStarPathFind();
+        fl.saveFile(gm.map, gm.path, filename.c_str());
+    }
+    catch (std::invalid_argument e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    
     return 0;
 }
