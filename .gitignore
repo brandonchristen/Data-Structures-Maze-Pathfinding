@@ -545,3 +545,6 @@ __pycache__/
 ### VisualStudio Patch ###
 
 # End of https://www.gitignore.io/api/visualstudio,xcode,c++
+
+### Custom ignores ###
+*_solved
