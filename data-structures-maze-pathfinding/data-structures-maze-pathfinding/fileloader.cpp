@@ -11,37 +11,39 @@
 //  takes a filename, and a pointer to a linked list
 //  saves every line to a node in the linked list
 Point*** FileLoader::loadFile(const char* filename) {
-    
-    std::ifstream ifs(filename);
-	Point*** map = new Point**[0];
-    rowLength = 0;
-    numRows = 0;
-    
-    int x = 0;
-    
-    // if the file isn't open, the argument is invalid
-    if (ifs.fail()) {
-        throw std::invalid_argument("Invalid file name");
-    }
 
-    // load every line of the file into the string, including whitespace.
-    while (!ifs.eof()) {
-        int y = 0;
-        std::string line;
-        getline(ifs,line);
-        if (line.length() > numRows) numRows = (int) line.length();
-        for (char c : line) {
-            Point* point = new Point(x,y,c,c!='+'&&c!='-');
-            map[x][y] = point;
-            y++;
-        }
-        x++;
-        if (y > rowLength) rowLength = y;
-    }
-    
-    // close the stream
-    ifs.close();
-    return map;
+	std::ifstream ifs(filename);
+	Point*** map = new Point**[0];
+	rowLength = 0;
+	numRows = 0;
+	int x = 0;
+
+	// if the file isn't open, the argument is invalid
+	if (ifs.fail()) {
+		throw std::invalid_argument("Invalid file name");
+	}
+
+	// load every line of the file into the string, including whitespace.
+	while (!ifs.eof()) {
+		int y = 0;
+		std::string line;
+		getline(ifs, line);
+
+		if (line.length() > numRows) numRows = (int)line.length();
+
+		for (char c : line) {
+			Point* point = new Point(x, y, c, c != '+'&&c != '-');
+			Point** plzwerk = &point;
+			map[x][y] = *plzwerk;
+			y++;
+		}
+
+		x++;
+		if (y > rowLength) rowLength = y;
+	}
+	// close the stream
+	ifs.close();
+	return map;
 }
 
 //  takes a pointer to a linked list, and a filename
@@ -55,8 +57,8 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     if (ofs.fail()) throw std::invalid_argument("Invalid file name");
     
     // output the map to file
-    int rows = sizeof map / sizeof map[0];
-    int cols = sizeof map[0] / sizeof(Point*);
+   const int rows = sizeof map / sizeof map[0];
+    const int cols = sizeof map[0] / sizeof(Point*);
     char a[rows][cols];
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {

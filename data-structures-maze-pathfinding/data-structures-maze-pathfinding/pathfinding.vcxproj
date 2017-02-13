@@ -99,14 +99,18 @@
   <ItemGroup>
     <ClCompile Include="fileloader.cpp" />
     <ClCompile Include="gamemap.cpp" />
+    <ClCompile Include="list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point.cpp" />
+    <ClCompile Include="queue.cpp" />
     <ClCompile Include="stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fileloader.hpp" />
     <ClInclude Include="gamemap.hpp" />
+    <ClInclude Include="list.hpp" />
     <ClInclude Include="point.hpp" />
+    <ClInclude Include="queue.hpp" />
     <ClInclude Include="stack.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
