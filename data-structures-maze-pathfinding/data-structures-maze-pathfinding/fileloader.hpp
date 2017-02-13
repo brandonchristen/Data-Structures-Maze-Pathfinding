@@ -20,7 +20,9 @@
 class FileLoader {
     int numRows;
     int rowLength;
+    std::istream& safeGetLine(std::istream& is, std::string& t);
 public:
+    Point* end;
     Point*** loadFile(const char* filename);
     void saveFile(Point*** map, Stack path, const char* filename);
 };

@@ -9,9 +9,12 @@
 #ifndef gamemap_hpp
 #define gamemap_hpp
 
+#include <iostream>
+#include <stdexcept>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <type_traits>
 #include "point.hpp"
 #include "stack.hpp"
 #include "queue.hpp"

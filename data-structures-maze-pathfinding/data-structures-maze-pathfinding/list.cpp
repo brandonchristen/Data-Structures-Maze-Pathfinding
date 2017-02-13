@@ -14,6 +14,7 @@ void List::push_back(Point* data) {
         temp[i] = items[i];
     }
     length++;
+    delete[] items;
     items = new Point*[length];
     for (int i = 0; i < length-1; i++) {
         items[i] = temp[i];
@@ -32,15 +33,16 @@ Point* List::get(int index) {
 }
 
 void List::remove(Point* point) {
+    if (length==0) return;
     Point** temp = new Point*[length];
     for (int i = 0; i < length; i++) {
         temp[i] = items[i];
     }
-    length--;
+    delete[] items;
     items = new Point*[length];
     int n = 0;
-    for (int i = 0; i < length+1; i++) {
-        if (&temp[i]==&point) continue;
+    for (int i = 0; i < length; i++) {
+        if (temp[i]==point) continue;
         items[n] = temp[i];
         n++;
     }

@@ -16,7 +16,7 @@ Point*** FileLoader::loadFile(const char* filename) {
 	Point*** map = new Point**[0];
 	rowLength = 0;
 	numRows = 0;
-	int x = 0;
+    bool b = true;
 
 	// if the file isn't open, the argument is invalid
 	if (ifs.fail()) {
@@ -25,24 +25,48 @@ Point*** FileLoader::loadFile(const char* filename) {
 
 	// load every line of the file into the string, including whitespace.
 	while (!ifs.eof()) {
-		int y = 0;
+        
 		std::string line;
-		getline(ifs, line);
+		safeGetLine(ifs, line);
+        
+		if (line.length() > rowLength) rowLength = (int)line.length();
+        
+        Point*** temp = new Point**[numRows];
+        if (!b) {
+            for (int i = 0; i < numRows; i++) {
+                temp[i] = new Point*[rowLength];
+                for (int j = 0; j < rowLength; j++) {
+                    temp[i][j] = map[i][j];
+                }
+            }
+        } else b = false;
+        
+        numRows++;
+        
+        map = new Point**[numRows];
+        for (int i = 0; i < numRows-1; i++) {
+            map[i] = new Point*[rowLength];
+            for (int j = 0; j < rowLength; j++) {
+                map[i][j] = temp[i][j];
+            }
+        }
+        map[numRows-1] = new Point*[rowLength];
 
-		if (line.length() > numRows) numRows = (int)line.length();
-
-		for (char c : line) {
-			Point* point = new Point(x, y, c, c != '+'&&c != '-');
-			Point** plzwerk = &point;
-			map[x][y] = *plzwerk;
-			y++;
+        for (int y = 0; y < rowLength; y++) {
+            int x = numRows-1;
+            char c = line[y];
+			Point* point = new Point(x, y, c, c != '+' && c != '-');
+            map[x][y] = point;
 		}
-
-		x++;
-		if (y > rowLength) rowLength = y;
+        
+        for (int i = 0; i < numRows-1; i++) {
+            delete[] temp[i];
+        }
+        delete[] temp;
 	}
 	// close the stream
 	ifs.close();
+    this->end = map[numRows-2][rowLength-1];
 	return map;
 }
 
@@ -57,7 +81,7 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     if (ofs.fail()) throw std::invalid_argument("Invalid file name");
     
     // output the map to file
-   const int rows = sizeof map / sizeof map[0];
+    const int rows = sizeof map / sizeof map[0];
     const int cols = sizeof map[0] / sizeof(Point*);
     char a[rows][cols];
     for (int i = 0; i < rows; i++) {
@@ -72,4 +96,38 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     
     // close the stream
     ofs.close();
+}
+
+// found this on stackoverflow
+std::istream& FileLoader::safeGetLine(std::istream& is, std::string& t)
+{
+    t.clear();
+    
+    // The characters in the stream are read one-by-one using a std::streambuf.
+    // That is faster than reading them one-by-one using the std::istream.
+    // Code that uses streambuf this way must be guarded by a sentry object.
+    // The sentry object performs various tasks,
+    // such as thread synchronization and updating the stream state.
+    
+    std::istream::sentry se(is, true);
+    std::streambuf* sb = is.rdbuf();
+    
+    for(;;) {
+        int c = sb->sbumpc();
+        switch (c) {
+            case '\n':
+                return is;
+            case '\r':
+                if(sb->sgetc() == '\n')
+                    sb->sbumpc();
+                return is;
+            case EOF:
+                // Also handle the case when the last line has no line ending
+                if(t.empty())
+                    is.setstate(std::ios::eofbit);
+                return is;
+            default:
+                t += (char)c;
+        }
+    }
 }
