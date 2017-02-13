@@ -72,7 +72,7 @@ Point*** FileLoader::loadFile(const char* filename) {
 
 //  takes a pointer to a linked list, and a filename
 //  saves every node to the given file
-void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
+void FileLoader::saveFile(Point*** map, Stack path, const char* filename, Point* end) {
     std::string outfilename = filename;
     outfilename += "_solved";
     std::ofstream ofs(outfilename, std::fstream::out | std::fstream::trunc);
@@ -81,25 +81,26 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     if (ofs.fail()) throw std::invalid_argument("Invalid file name");
     
     // output the map to file
-	//modified, not sure if original way to find them was even working, this should work
-	const int rows = sizeof(map) / sizeof(map[0]);
-	const int cols = sizeof(map[0]) / sizeof(map[0][0]);
 
-    char a[rows][cols];
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
+    char a[end->x+2][end->y+1];
+    for (int i = 0; i < end->x+2; i++) {
+        for (int j = 0; j < end->y+1; j++) {
             a[i][j] = map[i][j]->data;
         }
     }
-    Point* point;
-    while ((point = path.pop_back())!=NULL) {
+    while(true) {
+        if (path.isEmpty()) break;
+        Point* point = path.pop_back();
+        if (point == NULL) break;
         a[point->x][point->y] = '#';
+        std::cout<<path.size();
     }
     
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; i++) {
-			//I think this has to be &a and not a because a is just a pointer array as well
-            ofs << &a[i][j];
+    for (int i = 0; i < end->x+2; i++) {
+        for (int j = 0; j < end->y+1; j++) {
+			// output the character array to file;
+            ofs << a[i][j];
+            std::cout << "Outputting Point: " << i << ", " << j << std::endl;
         }
         ofs << std::endl;
     }

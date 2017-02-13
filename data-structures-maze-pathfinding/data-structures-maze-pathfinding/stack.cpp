@@ -27,15 +27,6 @@ Point* Stack::pop_back() {
     }
     Point* data = items[length-1];
     length--;
-    Point** temp = new Point*[length];
-    for (int i = 0; i < length; i++) {
-        temp[i] = items[i];
-    }
-    items = new Point*[length];
-    for (int i = 0; i < length-1; i++) {
-        items[i] = temp[i];
-    }
-    delete[] temp;
     
     return data;
 }

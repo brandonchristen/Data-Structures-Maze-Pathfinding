@@ -24,7 +24,7 @@ class FileLoader {
 public:
     Point* end;
     Point*** loadFile(const char* filename);
-    void saveFile(Point*** map, Stack path, const char* filename);
+    void saveFile(Point*** map, Stack path, const char* filename, Point* end);
 };
 
 #endif /* fileloader_hpp */

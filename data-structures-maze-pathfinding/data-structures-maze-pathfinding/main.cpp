@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
         GameMap gm(fl.loadFile(filename.c_str()));
         gm.end = fl.end;
         gm.aStarPathFind();
-        fl.saveFile(gm.map, gm.path, filename.c_str());
+        fl.saveFile(gm.map, gm.path, filename.c_str(), gm.end);
     }
     catch (std::invalid_argument e) {
         std::cout << e.what() << std::endl;
