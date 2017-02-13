@@ -81,8 +81,10 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     if (ofs.fail()) throw std::invalid_argument("Invalid file name");
     
     // output the map to file
-    const int rows = sizeof map / sizeof map[0];
-    const int cols = sizeof map[0] / sizeof(Point*);
+	//modified, not sure if original way to find them was even working, this should work
+	const int rows = sizeof(map) / sizeof(map[0]);
+	const int cols = sizeof(map[0]) / sizeof(map[0][0]);
+
     char a[rows][cols];
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -96,7 +98,8 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
     
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; i++) {
-            ofs << a[i][j];
+			//I think this has to be &a and not a because a is just a pointer array as well
+            ofs << &a[i][j];
         }
         ofs << std::endl;
     }
