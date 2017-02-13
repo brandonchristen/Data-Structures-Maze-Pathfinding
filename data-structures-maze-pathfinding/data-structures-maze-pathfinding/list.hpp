@@ -9,6 +9,7 @@
 #ifndef list_hpp
 #define list_hpp
 
+#include <algorithm>
 #include <stdexcept>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +22,7 @@ private:
 public:
     void push_back(Point* point);
     Point* get(int location);
-    void remove(Point* point);
+    bool remove(Point* point);
     int size();
     bool isEmpty();
 };

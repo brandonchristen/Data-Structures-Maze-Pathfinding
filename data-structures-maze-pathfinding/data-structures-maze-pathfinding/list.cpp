@@ -14,7 +14,6 @@ void List::push_back(Point* data) {
         temp[i] = items[i];
     }
     length++;
-    delete[] items;
     items = new Point*[length];
     for (int i = 0; i < length-1; i++) {
         items[i] = temp[i];
@@ -24,29 +23,26 @@ void List::push_back(Point* data) {
 }
 
 Point* List::get(int index) {
-    if (index > length-1) {
+    if (index > length-1 || index < 0) {
         char* message;
-        sprintf(message,"Index %d out of range: %d",index,length-1);
+        sprintf(message,"Index %d out of range: %d-%d",index,0,length-1);
         throw std::out_of_range(message);
     }
     return items[index];
 }
 
-void List::remove(Point* point) {
-    if (length==0) return;
-    Point** temp = new Point*[length];
+bool List::remove(Point* point) {
+    if (length==0) return false;
     for (int i = 0; i < length; i++) {
-        temp[i] = items[i];
+        if (items[i]==point) {
+            for (int j = i; j + 1 < length; j++) {
+                items[j] = items[j+1];
+            }
+            length--;
+            return true;
+        }
     }
-    delete[] items;
-    items = new Point*[length];
-    int n = 0;
-    for (int i = 0; i < length; i++) {
-        if (temp[i]==point) continue;
-        items[n] = temp[i];
-        n++;
-    }
-    delete[] temp;
+    return false;
 }
 
 int List::size() {

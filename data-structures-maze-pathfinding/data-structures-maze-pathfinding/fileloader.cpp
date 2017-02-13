@@ -55,7 +55,7 @@ Point*** FileLoader::loadFile(const char* filename) {
         for (int y = 0; y < rowLength; y++) {
             int x = numRows-1;
             char c = line[y];
-			Point* point = new Point(x, y, c, c != '+' && c != '-');
+			Point* point = new Point(x, y, c, c == ' ');
             map[x][y] = point;
 		}
         
@@ -66,15 +66,15 @@ Point*** FileLoader::loadFile(const char* filename) {
 	}
 	// close the stream
 	ifs.close();
-    this->end = map[numRows-2][rowLength-1];
+    this->end = map[numRows-3][rowLength-1];
 	return map;
 }
 
 //  takes a pointer to a linked list, and a filename
 //  saves every node to the given file
 void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
-    char* outfilename;
-    std::sprintf(outfilename,"%s%s",filename,"_solved");
+    std::string outfilename = filename;
+    outfilename += "_solved";
     std::ofstream ofs(outfilename, std::fstream::out | std::fstream::trunc);
     
     // if the file isn't open, the argument is invalid
@@ -94,11 +94,20 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename) {
         a[point->x][point->y] = '#';
     }
     
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; i++) {
+            ofs << a[i][j];
+        }
+        ofs << std::endl;
+    }
     // close the stream
     ofs.close();
 }
 
-// found this on stackoverflow
+// found this on stackoverflow. thanks to user763305 & Jimbo,
+// and Aaron McDaid for asking the question so I didn't have to.
+// http://stackoverflow.com/questions/6089231/getting-std-ifstream-to-handle-lf-cr-and-crlf
+// also good on these guys for giving an answer that isn't "use boost"
 std::istream& FileLoader::safeGetLine(std::istream& is, std::string& t)
 {
     t.clear();

@@ -21,7 +21,7 @@ public:
     
     int x;
     int y;
-    int fCost;
+    int fCost = -1;
     int gCost;
     int hCost;
 
