@@ -2,9 +2,6 @@
 //  point.hpp
 //  data-structures-maze-pathfinding
 //
-//  Created by Alexander Cochrane on 2017-02-09.
-//  Copyright © 2017 Alexander Cochrane. All rights reserved.
-//
 
 #ifndef point_hpp
 #define point_hpp

@@ -2,9 +2,6 @@
 //  gamemap.cpp
 //  data-structures-maze-pathfinding
 //
-//  Created by Alexander Cochrane on 2017-02-09.
-//  Copyright © 2017 Alexander Cochrane. All rights reserved.
-//
 
 #include "gamemap.hpp"
 
@@ -24,8 +21,19 @@ void GameMap::aStarPathFind() {
     openPoints.push_back(start);
     start->opened = true;
     current = start;
+    int n = 0;
     
-    while (true/* TODO: add timeout */) {
+    while (true) {
+        n++;
+        if (n > NUM_CYCLES_TIMEOUT) {
+            std::string message = "Timeout: Map took more than ";
+            message += std::to_string(NUM_CYCLES_TIMEOUT);
+            message += " cycles to solve.";
+            throw std::length_error(message);
+        }
+        if (openPoints.isEmpty()) {
+            throw std::length_error("No available path through map");
+        }
         // look for the Point with the lowest fCost, or the first available one, I guess
         for (int i = 0; i < openPoints.size(); i++) {
             if (openPoints.isEmpty()) continue;

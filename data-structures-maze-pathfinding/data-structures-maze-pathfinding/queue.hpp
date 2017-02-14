@@ -2,9 +2,6 @@
 //  queue.hpp
 //  data-structures-maze-pathfinding
 //
-//  Created by Alexander Cochrane on 2017-02-12.
-//  Copyright © 2017 Alexander Cochrane. All rights reserved.
-//
 
 #ifndef queue_hpp
 #define queue_hpp

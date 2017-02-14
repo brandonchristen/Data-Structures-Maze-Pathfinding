@@ -2,9 +2,6 @@
 //  gamemap.hpp
 //  data-structures-maze-pathfinding
 //
-//  Created by Alexander Cochrane on 2017-02-09.
-//  Copyright © 2017 Alexander Cochrane. All rights reserved.
-//
 
 #ifndef gamemap_hpp
 #define gamemap_hpp
@@ -27,6 +24,7 @@ public:
     Point* start;
     Point* end;
     Stack path;
+    int NUM_CYCLES_TIMEOUT;
     void aStarPathFind();
     GameMap(Point*** map);
 };
