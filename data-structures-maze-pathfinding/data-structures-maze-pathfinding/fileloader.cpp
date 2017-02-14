@@ -90,14 +90,12 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename, Point*
         Point* point = path.pop_back();
         if (point == NULL) break;
         a[point->x][point->y] = '#';
-        std::cout<<path.size();
     }
     
     for (int i = 0; i < end->x+2; i++) {
         for (int j = 0; j < end->y+1; j++) {
 			// output the character array to file;
             ofs << a[i][j];
-            std::cout << "Outputting Point: " << i << ", " << j << std::endl;
         }
         ofs << std::endl;
     }

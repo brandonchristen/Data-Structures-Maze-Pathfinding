@@ -15,8 +15,6 @@ void GameMap::aStarPathFind() {
     
     if (end==NULL) throw std::invalid_argument("Point End not defined");
     
-    std::cout << "End: " << end->x << ", " << end->y << std::endl;
-    
     start->calculate(end);
     openPoints.push_back(start);
     start->opened = true;
@@ -38,7 +36,6 @@ void GameMap::aStarPathFind() {
         for (int i = 0; i < openPoints.size(); i++) {
             if (openPoints.isEmpty()) continue;
             if (openPoints.get(i) == NULL) {
-                std::cout << "Point is null" << std::endl;
                 continue;
             }
             if (i == 0 || openPoints.get(i)->fCost < current->fCost) {
@@ -55,9 +52,6 @@ void GameMap::aStarPathFind() {
         openPoints.remove(current);
         current->opened = false;
         current->closed = true;
-        std::cout << "Current point: " << current->x << ", " << current->y
-                  << " (" << current->fCost << ", " << current->gCost << ", "
-                  << current->hCost << ")" << std::endl;
         
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
@@ -84,37 +78,6 @@ void GameMap::aStarPathFind() {
                 }
             }
         }
-        
-        // TODO: remove. ONLY FOR TESTING
-        for (int i = 0; i <= end->x; i++) {
-            for (int j = 0; j <= end->y; j++) {
-                Point* now = map[i][j];
-                if (now==current) {
-                    std::cout << '#';
-                }
-                else if (now->opened) {
-                    std::cout << 'o';
-                }
-                else if (now->closed) {
-                    std::cout << 'x';
-                }
-                else if (now==start) {
-                    std::cout << 'S';
-                }
-                else if (now==end) {
-                    std::cout << 'E';
-                }
-                else {
-                    std::cout << now->data;
-                }
-            }
-            std::cout << std::endl;
-        }
-        std::cout << '+';
-        for (int i = 0; i <= end->x; i+=2) {
-            std::cout << "-+";
-        }
-        std::cout << std::endl;
     }
     
     current = end;
