@@ -79,8 +79,9 @@ void FileLoader::saveFile(Point*** map, Stack path, const char* filename, Point*
     
     // output the map to file
 
-    char a[end->x+2][end->y+1];
+    char** a = new char*[end->x+2];
     for (int i = 0; i < end->x+2; i++) {
+        a[i] = new char[end->y+1];
         for (int j = 0; j < end->y+1; j++) {
             a[i][j] = map[i][j]->data;
         }
